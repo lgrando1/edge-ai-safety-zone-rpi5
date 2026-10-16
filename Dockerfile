@@ -10,9 +10,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
+# Fixa torch 2.4.1 CPU (compativel com torch.load do ultralytics) + onnxruntime
 RUN pip install --no-cache-dir \
-    torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir ultralytics==8.2.103 onnx==1.16.2
+    torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir \
+    "numpy<2.0.0" \
+    ultralytics==8.3.20 \
+    onnx==1.17.0 \
+    onnxruntime==1.19.2
 
 COPY scripts/export_onnx.py .
 RUN python export_onnx.py
