@@ -33,7 +33,7 @@ Acidentes graves em plantas industriais ocorrem frequentemente pela invasão aci
 
 ### 3.1. Execução Rápida com Docker Compose
 ```bash
-git clone [https://github.com/SEU_USUARIO/edge-ai-safety-zone-rpi5.git](https://github.com/SEU_USUARIO/edge-ai-safety-zone-rpi5.git)
+git clone [https://github.com/lgrando1/edge-ai-safety-zone-rpi5.git](https://github.com/lgrando1/edge-ai-safety-zone-rpi5.git)
 cd edge-ai-safety-zone-rpi5
 docker compose up --build -d
 ```
