@@ -1,0 +1,19 @@
+services:
+  edge-safety-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: leogrando/edge-safety-zone-rpi5:latest
+    container_name: edge-safety-monitor
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=/app/models/yolov8n.onnx
+      - CONF_THRESHOLD=0.45
+      - IOU_THRESHOLD=0.45
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 2G
