@@ -1,0 +1,29 @@
+name: Build Multi-Arch Edge AI (amd64 & arm64)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-multiarch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar QEMU para emulação ARM64 (Raspberry Pi 5)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Multi-Arquitetura (linux/amd64 e linux/arm64)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: false
+          tags: edge-safety-zone-rpi5:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
