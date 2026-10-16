@@ -1,0 +1,23 @@
+# Byte-compiled / cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Modelos pesados gerados localmente (o Dockerfile gera o ONNX no build)
+*.pt
+*.onnx
+models/
+
+# Imagens de saída de teste
+output_*.png
+sample_*.jpg
+
+# IDEs e Sistema Operacional
+.vscode/
+.idea/
+.DS_Store
