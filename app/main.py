@@ -4,6 +4,8 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import Response, JSONResponse
 from app.config import settings
 from app.detector import SafetyZoneDetector
+from pydantic import BaseModel
+from typing import List, Tuple
 
 app = FastAPI(
     title=settings.APP_TITLE,
@@ -81,3 +83,21 @@ async def predict_image(file: UploadFile = File(...)):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao gerar imagem anotada: {str(e)}")
+
+class ZoneUpdatePayload(BaseModel):
+    warning_zone_norm: List[Tuple[float, float]]
+    danger_zone_norm: List[Tuple[float, float]]
+
+@app.put("/config/zones", tags=["Configuração NR-12"])
+async def update_zones(payload: ZoneUpdatePayload):
+    """
+    Permite reconfigurar dinamicamente os polígonos das zonas de atenção (amarela)
+    e perigo crítico (vermelha) usando coordenadas normalizadas [0.0 a 1.0].
+    """
+    settings.WARNING_ZONE_NORM = payload.warning_zone_norm
+    settings.DANGER_ZONE_NORM = payload.danger_zone_norm
+    return {
+        "message": "Polígonos de segurança NR-12 atualizados com sucesso.",
+        "warning_zone_norm": settings.WARNING_ZONE_NORM,
+        "danger_zone_norm": settings.DANGER_ZONE_NORM
+    }
