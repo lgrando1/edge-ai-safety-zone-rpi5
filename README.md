@@ -101,6 +101,7 @@ Retorna as detecções da classe `person`, coordenadas da bounding box, ponto de
 
 **Requisição via `curl`:**
 ```bash
+curl -L https://ultralytics.com/images/bus.jpg -o sample_factory.jpg
 curl -X POST "http://localhost:8000/predict/json" \
   -H "accept: application/json" \
   -H "Content-Type: multipart/form-data" \
