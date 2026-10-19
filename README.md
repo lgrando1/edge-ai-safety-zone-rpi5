@@ -93,6 +93,8 @@ finally:
 ```
 
 ---
+<img width="810" height="1080" alt="output_annotated" src="https://github.com/user-attachments/assets/42ee6e21-3b2d-4cb6-87db-a19af7cb4ccf" />
+
 
 ## 4. Exemplos de Requisição e Resposta dos Endpoints
 
