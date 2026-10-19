@@ -9,11 +9,6 @@ from typing import List, Tuple
 
 from fastapi.responses import RedirectResponse
 
-@app.get("/", include_in_schema=False)
-async def root():
-    """Redireciona a rota raiz diretamente para a documentação interativa (Swagger UI)."""
-    return RedirectResponse(url="/docs")
-
 app = FastAPI(
     title=settings.APP_TITLE,
     version=settings.APP_VERSION,
@@ -108,3 +103,8 @@ async def update_zones(payload: ZoneUpdatePayload):
         "warning_zone_norm": settings.WARNING_ZONE_NORM,
         "danger_zone_norm": settings.DANGER_ZONE_NORM
     }
+
+@app.get("/", include_in_schema=False)
+async def root():
+    """Redireciona a rota raiz diretamente para a documentação interativa (Swagger UI)."""
+    return RedirectResponse(url="/docs")
