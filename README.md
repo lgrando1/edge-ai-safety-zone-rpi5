@@ -189,3 +189,5 @@ Para certificar a solução na Raspberry Pi 5 física antes da instalação em c
 > - **Parâmetros, Tamanho e Precisão (mAP):** Obtidos da tabela oficial de benchmarks do ecossistema Ultralytics YOLOv8 treinada no dataset MS COCO val2017 ($640 \times 640$). O modelo Nano (`yolov8n`) possui 3.2M de parâmetros (FP32 $\approx 12.2\text{ MB}$). O MobileNetV2 + SSD possui ~4.3M de parâmetros com resolução nativa menor ($300 \times 300$), apresentando menor acurácia em objetos distantes.
 > - **Latência na Raspberry Pi 5 (CPU Cortex-A76):** Baseada em benchmarks técnicos de implantação em CPU ARM64 (SoC Broadcom BCM2712) utilizando **ONNX Runtime** com instruções vetoriais ARM NEON e otimização XNNPACK, que reduzem o tempo de inferência do YOLOv8n para a faixa de 65 a 95 ms (10 a 15 FPS).
 > - **Uso de Memória RAM:** Aferido experimentalmente via monitoramento direto do container em tempo de execução (`docker stats`), comprovando que o microsserviço enxuto sem o framework PyTorch completo estabiliza em torno de ~210 MB de RAM.
+<img width="1436" height="103" alt="image" src="https://github.com/user-attachments/assets/7c983f68-6d7b-4e0b-bd4d-4ca0ac4cf2de" />
+
